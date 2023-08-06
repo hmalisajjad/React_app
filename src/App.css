@@ -49,3 +49,13 @@
   margin: 5px;
   align-items: right;
 }
+
+.dataRendering>span{
+  font-size: 10px;
+  position: absolute;
+  left: 190px;
+  padding-top: 50px;
+  font-family: Ubuntu;
+  font-weight: 500;
+  text-shadow: 0.1px 0.1px 0.8px black;
+}

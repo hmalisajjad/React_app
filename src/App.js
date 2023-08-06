@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
+import database from "./firebase";
+import firebase from "firebase/app";
 
 function App() {
   const [todos, setTodos] = useState(["testing", "testing2"]);
@@ -15,7 +17,7 @@ function App() {
   };
 
   const updateText = (i) => {
-    const updateData = prompt("Enter New Data", todos[i]);
+    const updateData = prompt("Enter New Data ", todos[i]);
     if (updateData) {
       todos[i] = updateData;
       setTodos([...todos]);
@@ -46,10 +48,12 @@ function App() {
         <Paper elevation={5} className="form">
           <TextField
             className="textField"
-            label="enterData"
+            label="Please Enter Your Data"
             value={text}
             onChange={(e) => setText(e.target.value)}
+            InputProps={{ maxlength: 55 }}
           />
+          <br />
           <br />
           <Button
             type="submit"
@@ -67,7 +71,7 @@ function App() {
       </form>
       {todos.map((data, i) => {
         return (
-          <Paper elevation={4} className="dataRendering">
+          <Paper elevation={5} className="dataRendering">
             <p>
               {i + 1}. {data}
             </p>
@@ -88,6 +92,7 @@ function App() {
                 DELETE
               </Button>
             </div>
+            <span>time</span>
           </Paper>
         );
       })}
