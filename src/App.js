@@ -4,16 +4,43 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import database from "./firebase";
-import firebase from "firebase/app";
+import { serverTimestamp } from "firebase/compat/firestore";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 function App() {
   const [todos, setTodos] = useState(["testing", "testing2"]);
   const [text, setText] = useState("");
 
+  var day = new Date();
+  var dateTime =
+    day.getDate +
+    "-" +
+    (day.getMonth() + 1) +
+    "-" +
+    day.getFullYear() +
+    "" +
+    day.getHours() +
+    ":" +
+    day.getMinutes();
+
   const addText = (e) => {
     e.preventDefault();
-    setTodos([...todos, text]);
-    setText("");
+    database
+      .collection("DataApp")
+      .add({
+        TODO: text,
+        TIME: dateTime,
+        SERVERTIMESTAMP: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then(() => {
+        setText("");
+        alert("Data Added");
+      })
+      .catch((error) => {
+        alert("Error! Please Check your enter Data", error.message);
+      });
   };
 
   const updateText = (i) => {
@@ -77,7 +104,6 @@ function App() {
             </p>
             <div>
               <Button
-                type="submit"
                 variant="contained"
                 color="primary"
                 onClick={() => updateText(i)}
