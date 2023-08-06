@@ -43,9 +43,28 @@ function App() {
       </form>
       {todos.map((data, i) => {
         return (
-          <p>
-            {i + 1}. {data}
-          </p>
+          <Paper elevation={4} className="dataRendering">
+            <p>
+              {i + 1}. {data}
+            </p>
+            <div>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                onClick={() => updateText(i)}
+              >
+                UPDATE
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => deleteText(i)}
+              >
+                DELETE
+              </Button>
+            </div>
+          </Paper>
         );
       })}
     </div>

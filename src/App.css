@@ -20,3 +20,32 @@
   margin: 20px 150px 22px 150px;
   padding: 15px 0px 15px 0px;
 }
+
+.form>.textField{
+  width: 500px;
+}
+
+.form>Button{
+  width: 20%;
+  margin: 5px;
+}
+
+.dataRendering{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 150px 20px 150px;
+  padding: 10px;
+}
+
+.dataRendering>p{
+  font-family: ubuntu;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.dataRendering>div>Button{
+  width: 150px;
+  margin: 5px;
+  align-items: right;
+}
