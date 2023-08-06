@@ -5,16 +5,39 @@ import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 
 function App() {
-  const [todos, setTodos] = useState(["testing"]);
+  const [todos, setTodos] = useState(["testing", "testing2"]);
   const [text, setText] = useState("");
 
-  const addText = () => {};
+  const addText = (e) => {
+    e.preventDefault();
+    setTodos([...todos, text]);
+    setText("");
+  };
 
-  const updateText = () => {};
+  const updateText = (i) => {
+    const updateData = prompt("Enter New Data", todos[i]);
+    if (updateData) {
+      todos[i] = updateData;
+      setTodos([...todos]);
+      console.log(todos);
+    } else {
+      alert("As you wish!");
+    }
+  };
 
-  const deleteText = () => {};
+  const deleteText = (i) => {
+    todos.splice(i, 1);
+    setTodos([...todos]);
+  };
 
-  const deleteAllText = () => {};
+  const deleteAllText = (i) => {
+    if (deleteAllText) {
+      alert("Do you want to Delete All?");
+      setTodos([]);
+    } else {
+      alert("As you wish!");
+    }
+  };
 
   return (
     <div>
@@ -31,6 +54,7 @@ function App() {
           <Button
             type="submit"
             variant="contained"
+            disabled={!text}
             color="primary"
             onClick={addText}
           >
